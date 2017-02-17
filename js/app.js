@@ -1,3 +1,4 @@
+$(document).foundation(); 
 var x = function(a,b,c){
 c=new XMLHttpRequest;
 c.open('GET',a);
