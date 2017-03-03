@@ -1,3 +1,50 @@
 body{
-  background-color: green;
+
+}
+
+.fullWidth {
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   max-width: initial;
+}
+
+
+.newschannel{
+  margin-top: 20px;
+  height: 100%;
+}
+.distributor{
+
+}
+.storys{
+  overflow-y: scroll;
+}
+.story{
+  height: 100%;
+
+}
+.headline{
+  font-size: 100px;
+}
+.description{
+  font-size: 50px;
+}
+.gotooutlet{
+
+}
+.readstory{
+
+}
+
+
+h4{
+  font-size: 21px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+}
+
+p{
+  font-size: 14px;
+  font-family: 'PT Serif', serif;
 }
