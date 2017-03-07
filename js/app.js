@@ -38,6 +38,7 @@ $(document).ready(function(){
        display +='</div>';
 
        display +='<div class="small-12 columns storys">';
+       // loop through items
 
          display +='<div class="small-12 columns story" id="0">';
            display +='<div class="small-12 columns headline headlineFont" >';
