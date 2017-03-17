@@ -13,42 +13,71 @@ $(document).ready(function(){
   var yql=function(a,b){
     return 'http://query.yahooapis.com/v1/public/yql?q='+encodeURIComponent('select * from '+b+' where url=\"'+a+'\"')+'&format=json';
   };
+  function strip(html)
+{
+   var tmp = document.createElement("DIV");
+   tmp.innerHTML = html;
+   return tmp.textContent || tmp.innerText || "";
+}
+  var sky = yql('http://feeds.skynews.com/feeds/rss/world.xml', 'xml');
+  var bbc = yql('http://feeds.bbci.co.uk/news/rss.xml','xml');
+  var gar = yql('https://www.theguardian.com/world/rss', 'xml');
 
-  var yql = yql('http://feeds.bbci.co.uk/news/rss.xml','xml');
+  $.getJSON(bbc, function(res) {
 
-  $.getJSON(yql, function(res) {
-
-      display = '<div class="small-2 columns newschannel">';
-        display+= '<div class="small-12 columns headline headlineFont" >';
-          display+= '<h4>Pilot errors led to Shoreham air crash, says AAIB</h4>';
-
-
-      var channel = res.query.results.rss.channel;
       console.log(res);
-      console.log(channel);
-      createChannel(channel);
+      createChannel(res, "bbc");
    }, "jsonp");
 
-    function createChannel(chan){
-     display = '<div class="small-2 columns newschannel" id="0">';
+   $.getJSON(sky, function(res) {
+
+       console.log(res);
+       createChannel(res, "sky");
+    }, "jsonp");
+
+    $.getJSON(gar, function(res) {
+
+        console.log(res);
+        createChannel(res, "gar");
+     }, "jsonp");
+
+    function createChannel(res, outlet){
+
+      var channel = res.query.results.rss.channel;
+     display = '<div class="small-2 float-left columns newschannel">';
 
        display +='<div class="small-12 text-center columns distributor">';
-         display +='<img src="http://news.bbcimg.co.uk/nol/shared/img/bbc_news_120x60.gif" >';
+         display +='<img class="distributorimg" src="'+channel.image.url+'" >';
          display +='<hr>';
        display +='</div>';
 
        display +='<div class="small-12 columns storys">';
        // loop through items
-
-         display +='<div class="small-12 columns story" id="0">';
+       $.each(channel.item, function(index, value){
+         display +='<div class="small-12 columns story" id="'+outlet+index+'">';
            display +='<div class="small-12 columns headline headlineFont" >';
-           display +='  <h4>Pilot errors led to Shoreham air crash, says AAIB</h4>';
+
+           display +='  <h4>'+strip(value.title)+'</h4>';
            display +='</div>';
+
            display +='<div class="small-12 columns thumbnail text-center">';
-             display +='<img src="http://c.files.bbci.co.uk/D31A/production/_94924045_shoreham_car.jpg" >';
+            if(outlet == "gar"){
+              if(value.content.length > 0){
+                display +='<img  src="'+value.content[0].url+'" >';
+              }
+
+            }else{
+              display +='<img  src="'+value.thumbnail.url+'" >';
+            }
+
            display +='</div>';
            display +='<div class="small-12 columns description mainContentFont">';
-               display +='<p>A jet crashed on the A27 killing 11 men because it was too low for a manoeuvre, investigators say.</p>';
+              if(outlet == "sky"){
+                display +='<p>'+strip(value.description[0])+'</p>';
+              }else{
+                display +='<p>'+strip(value.description)+'</p>';
+              }
+
            display +='</div>';
            display +='<div class="small-12 columns gotooutlet">';
 
@@ -58,6 +87,10 @@ $(document).ready(function(){
            display +='</div>';
            display +='<hr>';
          display +='</div>';
+
+
+       });
+
          //end story
 
        display +='</div>';

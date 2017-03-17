@@ -1,7 +1,4 @@
-body{
-
-}
-
+html,body{ margin:0; padding:0; height:100%; width:100%; }
 .fullWidth {
    width: 100%;
    margin-left: auto;
@@ -9,22 +6,31 @@ body{
    max-width: initial;
 
 }
-
+.main{
+  margin-top: 30px;
+}
 
 .newschannel{
-  margin-top: 20px;
-  height: 100%;
+
+
+
+}
+.distributorimg{
+  height:50px;
+  width: 110px;
 }
 .distributor{
-
+margin-top: 30px;
 }
 .storys{
   overflow-y: scroll;
   overflow-x: hidden;
+  height: 400px;
+
 
 }
 .story{
-  height: 100%;
+
 
 }
 .headline{
@@ -38,6 +44,9 @@ body{
 }
 .readstory{
 
+}
+.thumbnail{
+  box-shadow: none;
 }
 
 
