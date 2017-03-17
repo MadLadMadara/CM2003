@@ -22,29 +22,36 @@ $(document).ready(function(){
   var sky = yql('http://feeds.skynews.com/feeds/rss/world.xml', 'xml');
   var bbc = yql('http://feeds.bbci.co.uk/news/rss.xml','xml');
   var gar = yql('https://www.theguardian.com/world/rss', 'xml');
-
+  var fox = yql('http://feeds.foxnews.com/foxnews/world?format=xml', 'xml');
   $.getJSON(bbc, function(res) {
 
-      console.log(res);
+      //console.log(res);
       createChannel(res, "bbc");
    }, "jsonp");
 
    $.getJSON(sky, function(res) {
 
-       console.log(res);
+      // console.log(res);
        createChannel(res, "sky");
     }, "jsonp");
 
     $.getJSON(gar, function(res) {
 
-        console.log(res);
+        //console.log(res);
         createChannel(res, "gar");
      }, "jsonp");
+     $.getJSON(fox, function(res) {
+
+         console.log(res);
+         createChannel(res, "fox");
+      }, "jsonp");
+
+
 
     function createChannel(res, outlet){
 
       var channel = res.query.results.rss.channel;
-     display = '<div class="small-2 float-left columns newschannel">';
+     display = '<div class="small-2 float-left columns newschannel" id="'+outlet+'">';
 
        display +='<div class="small-12 text-center columns distributor">';
          display +='<img class="distributorimg" src="'+channel.image.url+'" >';
@@ -61,12 +68,11 @@ $(document).ready(function(){
            display +='</div>';
 
            display +='<div class="small-12 columns thumbnail text-center">';
-            if(outlet == "gar"){
+            if(outlet == "gar" ){
               if(value.content.length > 0){
                 display +='<img  src="'+value.content[0].url+'" >';
               }
-
-            }else{
+            }else if(outlet == "sky" || outlet == "bbc"){
               display +='<img  src="'+value.thumbnail.url+'" >';
             }
 
