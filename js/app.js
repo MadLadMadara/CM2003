@@ -67,7 +67,7 @@ $(document).ready(function(){
     function createChannel(res, outlet){
 
       var channel = res.query.results.rss.channel;
-     display = '<div class="small-12 medium-3 large-2 float-left columns newschannel" id="'+outlet+'">';
+     display = '<div class="small-6 medium-4 large-2 float-left columns newschannel" id="'+outlet+'">';
 
        display +='<div class="small-12 text-center columns distributor">';
          display +='<img class="distributorimg" src="'+channel.image.url+'" >';
@@ -94,7 +94,7 @@ $(document).ready(function(){
               if(value.content != null){
                 display +='<img  src="'+value.content.url+'" >';
               }
-              
+
             }
 
            display +='</div>';
