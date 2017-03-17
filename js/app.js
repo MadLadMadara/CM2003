@@ -23,6 +23,8 @@ $(document).ready(function(){
   var bbc = yql('http://feeds.bbci.co.uk/news/rss.xml','xml');
   var gar = yql('https://www.theguardian.com/world/rss', 'xml');
   var fox = yql('http://feeds.foxnews.com/foxnews/world?format=xml', 'xml');
+  var ajn = yql('http://www.aljazeera.com/xml/rss/all.xml', 'xml');
+
   $.getJSON(bbc, function(res) {
 
       //console.log(res);
@@ -45,6 +47,12 @@ $(document).ready(function(){
          console.log(res);
          createChannel(res, "fox");
       }, "jsonp");
+
+      $.getJSON(ajn, function(res) {
+
+          console.log(res);
+          createChannel(res, "ajn");
+       }, "jsonp");
 
 
 
