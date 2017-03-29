@@ -22,13 +22,11 @@ $(document).ready(function(){
   var ajn = yql('http://www.aljazeera.com/xml/rss/all.xml', 'xml');
   var nyt = yql('http://rss.nytimes.com/services/xml/rss/nyt/World.xml', 'xml');
 
-// load data from rss and display on dom
+// load data from rss and display on dom, this creates the inital channel cards
   function loadChannel(outlet, outletTitle){
     $.getJSON(outlet, function(res) {
-
         console.log(res);
         createChannel(res, outletTitle);
-
      }, "jsonp");
   }
   // update storys in the channel cards if the rss has updated this can be forced
@@ -69,21 +67,21 @@ $(document).ready(function(){
 
   // create dom elements, the channel init function
   // will only be used once per news outlet
-  function createChannel(res, outlet){
+  function createChannel(outlet, outletTitle){
 
-      var channel = res.query.results.rss.channel;
-     display = '<div class="small-6 medium-4 large-2 float-left columns newschannel" id="'+outlet+'">';
+      var channel = outlet.query.results.rss.channel;
+     display = '<div class="small-6 medium-4 large-2 float-left columns newschannel" id="'+outletTitle+'">';
 
-     if(outlet == "ajn" || outlet == "fox"){
+     if(outletTitle == "ajn" || outletTitle == "fox"){
 
-      display += '<input type="hidden" name="lastUpDate" class="'+outlet+'lastUpdate" value="'+Date.parse(channel.item[0].pubDate)+'">';
+      display += '<input type="hidden" name="lastUpDate" class="'+outletTitle+'lastUpdate" value="'+Date.parse(channel.item[0].pubDate)+'">';
 
 
-     }else if(outlet == "gar"){
-       display += '<input type="hidden" name="lastUpDate" class="'+outlet+'lastUpdate" value="'+Date.parse(channel.pubDate)+'">';
+     }else if(outletTitle == "gar"){
+       display += '<input type="hidden" name="lastUpDate" class="'+outletTitle+'lastUpdate" value="'+Date.parse(channel.pubDate)+'">';
 
      }else{
-       display += '<input type="hidden" name="lastUpDate" class="'+outlet+'lastUpdate" value="'+Date.parse(channel.lastBuildDate)+'">';
+       display += '<input type="hidden" name="lastUpDate" class="'+outletTitle+'lastUpdate" value="'+Date.parse(channel.lastBuildDate)+'">';
      }
 
 
@@ -92,26 +90,26 @@ $(document).ready(function(){
          display +='<hr>';
        display +='</div>';
 
-       display +='<div class="small-12 columns storys" id="storys'+outlet+'">';
+       display +='<div class="small-12 columns storys" id="storys'+outletTitle+'">';
        // loop through items
 
-       var date = "";
+
        $.each(channel.item, function(index, value){
 
-         display +='<div class="small-12 columns story" id="'+outlet+index+'">';
+         display +='<div class="small-12 columns story" id="'+outletTitle+index+'">';
            display +='<div class="small-12 columns headline headlineFont" >';
 
            display +='  <h4>'+strip(value.title)+'</h4>';
            display +='</div>';
 
            display +='<div class="small-12 columns thumbnail text-center">';
-            if(outlet == "gar" ){
+            if(outletTitle == "gar" ){
               if(value.content.length > 0){
                 display +='<img  src="'+value.content[0].url+'" >';
               }
-            }else if(outlet == "sky" || outlet == "bbc"){
+            }else if(outletTitle == "sky" || outletTitle == "bbc"){
               display +='<img  src="'+value.thumbnail.url+'" >';
-            }else if(outlet == "nyt"){
+            }else if(outletTitle == "nyt"){
               if(value.content != null){
                 display +='<img  src="'+value.content.url+'" >';
               }
@@ -120,7 +118,7 @@ $(document).ready(function(){
 
            display +='</div>';
            display +='<div class="small-12 columns description mainContentFont">';
-              if(outlet == "sky"){
+              if(outletTitle == "sky"){
                 display +='<p>'+strip(value.description[0])+'</p>';
               }else{
                 display +='<p>'+strip(value.description)+'</p>';
@@ -130,9 +128,7 @@ $(document).ready(function(){
            display +='<div class="small-12 columns gotooutlet">';
 
            display +='</div>';
-           display +='<div class="small-12 columns readstory">';
-
-           display +='</div>';
+           display +='<button type="button" class="small-12 button readstory">Read Story</button>';
            display +='<hr>';
          display +='</div>';
 
@@ -148,34 +144,34 @@ $(document).ready(function(){
      $(display).appendTo('#main');
    }
    // only updates the content of story and last updated value
-   function updateStorys(channel, outlet){
+   function updateStorys(channel, outletTitle){
      display = "";
      date = "";
-     if(outlet == "ajn" || outlet == "fox"){
+     if(outletTitle == "ajn" || outletTitle == "fox"){
 
       date = Date.parse(channel.item[0].pubDate);
 
-     }else if(outlet == "gar"){
+     }else if(outletTitle == "gar"){
        date = Date.parse(channel.pubDate);
      }else{
        date = Date.parse(channel.lastBuildDate);
      }
      $.each(channel.item, function(index, value){
 
-       display +='<div class="small-12 columns story" id="'+outlet+index+'">';
+       display +='<div class="small-12 columns story" id="'+outletTitle+index+'">';
          display +='<div class="small-12 columns headline headlineFont" >';
 
          display +='  <h4>'+strip(value.title)+'</h4>';
          display +='</div>';
 
          display +='<div class="small-12 columns thumbnail text-center">';
-          if(outlet == "gar" ){
+          if(outletTitle == "gar" ){
             if(value.content.length > 0){
               display +='<img  src="'+value.content[0].url+'" >';
             }
-          }else if(outlet == "sky" || outlet == "bbc"){
+          }else if(outletTitle == "sky" || outletTitle == "bbc"){
             display +='<img  src="'+value.thumbnail.url+'" >';
-          }else if(outlet == "nyt"){
+          }else if(outletTitle == "nyt"){
             if(value.content != null){
               display +='<img  src="'+value.content.url+'" >';
             }
@@ -184,7 +180,7 @@ $(document).ready(function(){
 
          display +='</div>';
          display +='<div class="small-12 columns description mainContentFont">';
-            if(outlet == "sky"){
+            if(outletTitle == "sky"){
               display +='<p>'+strip(value.description[0])+'</p>';
             }else{
               display +='<p>'+strip(value.description)+'</p>';
@@ -194,18 +190,24 @@ $(document).ready(function(){
          display +='<div class="small-12 columns gotooutlet">';
 
          display +='</div>';
-         display +='<div class="small-12 columns readstory">';
-
-         display +='</div>';
+         display +='<button type="button" class="button readstory">Read story?</button>';
          display +='<hr>';
        display +='</div>';
 
 
      });
 
-     $('.'+outlet+'lastUpdate').val(date);
-     $('#storys'+outlet+'').html(display);
+     $('.'+outletTitle+'lastUpdate').val(date);
+     $('#storys'+outletTitle+'').html(display);
    }
+
+
+   // website scraper
+   function scraper(url, contentTag, imageTag){
+
+   }
+
+
    // runtime
 
    // create inital channel cards
@@ -217,7 +219,7 @@ $(document).ready(function(){
    loadChannel(nyt, "nyt");
 
 
-   // update channel cards every 5 seconds
+   // update channel cards storys every 5 seconds
    setInterval(function(){
      updateChannel(bbc, "bbc", false);
      updateChannel(sky, "sky", false);
@@ -227,6 +229,9 @@ $(document).ready(function(){
      updateChannel(nyt, "nyt", false);
     console.log("update");
   }, 10000);
+
+
+  // buttons
 
 
 
