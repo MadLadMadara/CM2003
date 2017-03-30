@@ -37,11 +37,12 @@ $(document).ready(function(){
       var channel = res.query.results.rss.channel;
       if(!$( '#storys'+outletTitle+'' ).length) return;
 
+
       if(outletTitle == "ajn" || outletTitle == "fox"){
 
 
             console.log(outletTitle+Date.parse(channel.item[0].pubDate) + " " +$("."+outletTitle+"lastUpdate").val());
-           if(Date.parse(channel.item[0].pubDate) > $('.'+outletTitle+'lastUpdate').val()){
+           if(Date.parse(channel.item[0].pubDate) > $('.'+outletTitle+'lastUpdate').val() || force){
              updateStorys(channel, outletTitle);
              console.log(outletTitle+"updateStorys");
 
@@ -190,7 +191,7 @@ $(document).ready(function(){
          display +='<div class="small-12 columns gotooutlet">';
 
          display +='</div>';
-         display +='<button type="button" class="button readstory">Read story?</button>';
+         display +='<button type="button" class="small-12 button readstory">Read Story</button>';
          display +='<hr>';
        display +='</div>';
 
