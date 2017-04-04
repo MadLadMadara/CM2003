@@ -144,8 +144,8 @@ $(document).ready(function(){
      display +='</div>';
      $(display).appendTo('#main');
      // create listener for read story button
-     $(".readstory" ).click(function() {
-       readStoryBtn($(this));
+     $("#storys"+outletTitle+" .readstory" ).click(function() {
+       displayStoryModel($(this), "#sideNewsPanel");
      });
    }
    // only updates the content of story and last updated value
@@ -204,7 +204,9 @@ $(document).ready(function(){
 
      $('.'+outletTitle+'lastUpdate').val(date);
      $('#storys'+outletTitle+'').html(display);
-
+     $("#storys"+outletTitle+" .readstory" ).click(function() {
+       displayStoryModel($(this), "#sideNewsPanel");
+     });
 
    }
 
@@ -228,15 +230,15 @@ $(document).ready(function(){
 
 
    // update channel cards storys every 5 seconds
-  //  setInterval(function(){
-  //    updateChannel(bbc, "bbc", false);
-  //    updateChannel(sky, "sky", false);
-  //    updateChannel(gar, "gar", false);
-  //    updateChannel(fox, "fox", false);
-  //    updateChannel(ajn, "ajn", false);
-  //    updateChannel(nyt, "nyt", false);
-  //   console.log("update");
-  // }, 10000);
+   setInterval(function(){
+     updateChannel(bbc, "bbc", false);
+     updateChannel(sky, "sky", false);
+     updateChannel(gar, "gar", false);
+     updateChannel(fox, "fox", false);
+     updateChannel(ajn, "ajn", false);
+     updateChannel(nyt, "nyt", false);
+    console.log("update");
+  }, 10000);
 
 
   // buttons
@@ -244,12 +246,12 @@ $(document).ready(function(){
   //
   var count = 0;
 
-  function readStoryBtn(btnElement){
+  function displayStoryModel(btnElement, modelId){
 
     // work around for button firing multible times
-    if($('#sideNewsPanel').attr("aria-hidden") == "true"){
-
-      $('#sideNewsPanel').foundation('open');
+    if($(modelId).attr("aria-hidden") == "true"){
+      count++;
+      $(modelId).foundation('open');
     }
     console.log(count);
 
