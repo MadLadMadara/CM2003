@@ -23,7 +23,7 @@ $(document).ready(function(){
 // load data from rss and display on dom, this creates the inital channel cards
   function loadChannel(outlet, outletTitle){
     $.getJSON(outlet, function(res) {
-        console.log(res);
+        console.log(res);// forTesting
         createChannel(res, outletTitle);
      }, "jsonp");
   }
@@ -39,25 +39,25 @@ $(document).ready(function(){
       if(outletTitle == "ajn" || outletTitle == "fox"){
 
 
-            console.log(outletTitle+Date.parse(channel.item[0].pubDate) + " " +$("."+outletTitle+"lastUpdate").val());
+            console.log(outletTitle+Date.parse(channel.item[0].pubDate) + " " +$("."+outletTitle+"lastUpdate").val());// forTesting
            if(Date.parse(channel.item[0].pubDate) > $('.'+outletTitle+'lastUpdate').val() || force){
              updateStorys(channel, outletTitle);
-             console.log(outletTitle+"updateStorys");
+             console.log(outletTitle+"updateStorys");// forTesting
 
 
            }
 
       }else if(outletTitle == "gar"){
-        console.log(outletTitle+Date.parse(channel.pubDate) + " " +$("."+outletTitle+"lastUpdate").val());
+        console.log(outletTitle+Date.parse(channel.pubDate) + " " +$("."+outletTitle+"lastUpdate").val());// forTesting
         if(Date.parse(channel.pubDate) > $("."+outletTitle+"lastUpdate").val() || force){
           updateStorys(channel, outletTitle);
-          console.log(outletTitle+"updateStorys");
+          console.log(outletTitle+"updateStorys");// forTesting
         }
       }else{
-        console.log(outletTitle+Date.parse(channel.lastBuildDate) + " " +$("."+outletTitle+"lastUpdate").val());
+        console.log(outletTitle+Date.parse(channel.lastBuildDate) + " " +$("."+outletTitle+"lastUpdate").val());// forTesting
         if( Date.parse(channel) > $("."+outletTitle+"lastUpdate").val() || force){
           updateStorys(channel, outletTitle);
-          console.log(outletTitle+"updateStorys");
+          console.log(outletTitle+"updateStorys");// forTesting
         }
       }
 
@@ -239,7 +239,7 @@ $(document).ready(function(){
    // this fiunction also displays the content of the arical to
    // the side panel
    function newsSiteContentScraper(url, outletTitle, modelId){
-
+      console.log(yql(url, 'html', "html"));// forTesting
 
        $.ajax({
          url: yql(url, 'html', "html"),
@@ -248,20 +248,26 @@ $(document).ready(function(){
            if(outletTitle == "bbc"){
              $(modelId).html(res);
 
+           }else if (outletTitle == "gar") {
+
+           }else if (outletTitle == "ajn") {
+
+           }else if (outletTitle == "nyt") {
+
+           }else if (outletTitle == "fox") {
+
+           }else if (outletTitle == "gar") {
+
            }
 
          }
        });
 
-
-
-
-
    }
 
    // !!! EVENTS !!!
 
-   var count = 0;
+   var count = 0; // forTesting
 
    // read story button event
    // this method prevents double button presses and ajax request overlaps
@@ -271,14 +277,14 @@ $(document).ready(function(){
      // work around for button firing multible times
      if($(modelId).attr("aria-hidden") == "true" && safeClick){
        safeClick = false;
-       count++;
+       count++; // forTesting
        var url = btnElement.parent().find('.linkToArtical').val();
        var outletTitle = btnElement.parent().parent().parent().attr('id');
        newsSiteContentScraper(url, outletTitle, modelId);
        $(modelId).foundation('open'); // needs to be moved to newsSiteContentScraper function
        safeClick = true;
      }
-     console.log(count);
+     console.log(count);// forTesting
 
    }
 
@@ -310,7 +316,7 @@ $(document).ready(function(){
      updateChannel(fox, "fox", false);
      updateChannel(ajn, "ajn", false);
      updateChannel(nyt, "nyt", false);
-    console.log("update");
+    console.log("update");// forTesting
   }, 10000);
 
 
