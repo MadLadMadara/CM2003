@@ -8,8 +8,8 @@ $(document).ready(function(){
   // create urls for rss feed
 
   // creates a url string that pulls rss feeds via http://query.yahooapis.com in the form of xml
-  var yql=function(a,b){
-    return 'http://query.yahooapis.com/v1/public/yql?q='+encodeURIComponent('select * from '+b+' where url=\"'+a+'\"')+'&format=json';
+  var yql=function(a,b,f){
+    return 'http://query.yahooapis.com/v1/public/yql?q='+encodeURIComponent('select * from '+b+' where url=\"'+a+'\"')+'&format='+f;
   };
   // remove html tags from string
   function strip(html)
@@ -127,7 +127,19 @@ $(document).ready(function(){
            display +='<div class="small-12 columns gotooutlet">';
 
            display +='</div>';
-           display +='<button type="button" class="small-12 button readstory">Read Story</button>';
+           if("link" in value){
+             if(outletTitle == "nyt"){
+               // link is an array [0] url string [1] objecy
+               // object .href is the link .rel no idea
+                 display +='<button type="button" class="small-12 button readstory">Read Story</button>';
+                 display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link[0]+'">';
+
+             }else{
+                 display +='<button type="button" class="small-12 button readstory">Read Story</button>';
+                 display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link+'">';
+
+            }
+          }
            display +='<hr>';
          display +='</div>';
 
@@ -193,7 +205,22 @@ $(document).ready(function(){
          display +='<div class="small-12 columns gotooutlet">';
 
          display +='</div>';
-         display +='<button type="button" class="small-12 button readstory">Read Story</button>';
+         // button creation and hiden value link
+         if("link" in value){
+           if(outletTitle == "nyt"){
+             // link is an array [0] url string [1] objecy
+             // object .href is the link .rel no idea
+               display +='<button type="button" class="small-12 button readstory">Read Story</button>';
+               display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link[0]+'">';
+
+           }else{
+               display +='<button type="button" class="small-12 button readstory">Read Story</button>';
+               display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link+'">';
+
+          }
+        }
+
+
          display +='<hr>';
        display +='</div>';
 
@@ -209,7 +236,24 @@ $(document).ready(function(){
    }
 
    // website scraper
-   function newsSiteScraper(url){
+   function newsSiteContentScraper(url, outletTitle, modelId){
+
+
+       $.ajax({
+         url: yql(url, 'html', "html"),
+         dataType: 'html',
+         success: function(res) {
+           if(outletTitle == "bbc"){
+             $(modelId).html(res);
+
+           }
+
+         }
+       });
+
+
+
+
 
    }
 
@@ -220,12 +264,17 @@ $(document).ready(function(){
    // read story button event
    // opens model and displays outlet content
    // listeners are created in the createChannel and updateStorys functions these functions call this
+   var safeClick = true; // to stop double clicks when ajax request are being preformed
    function displayStoryModel(btnElement, modelId){
-
      // work around for button firing multible times
-     if($(modelId).attr("aria-hidden") == "true"){
+     if($(modelId).attr("aria-hidden") == "true" && safeClick){
+       safeClick = false;
        count++;
-       $(modelId).foundation('open');
+       var url = btnElement.parent().find('.linkToArtical').val();
+       var outletTitle = btnElement.parent().parent().parent().attr('id');
+       newsSiteContentScraper(url, outletTitle, modelId);
+       $(modelId).foundation('open'); // needs to be moved to newsSiteContentScraper function
+       safeClick = true;
      }
      console.log(count);
 
@@ -235,12 +284,12 @@ $(document).ready(function(){
    // !!! RUNTIME !!!
 
    //  url for rss feeds
-   var sky = yql('http://feeds.skynews.com/feeds/rss/world.xml', 'xml');
-   var bbc = yql('http://feeds.bbci.co.uk/news/rss.xml','xml');
-   var gar = yql('https://www.theguardian.com/world/rss', 'xml');
-   var fox = yql('http://feeds.foxnews.com/foxnews/world?format=xml', 'xml');
-   var ajn = yql('http://www.aljazeera.com/xml/rss/all.xml', 'xml');
-   var nyt = yql('http://rss.nytimes.com/services/xml/rss/nyt/World.xml', 'xml');
+   var sky = yql('http://feeds.skynews.com/feeds/rss/world.xml', 'xml', "json");
+   var bbc = yql('http://feeds.bbci.co.uk/news/rss.xml','xml', "json");
+   var gar = yql('https://www.theguardian.com/world/rss', 'xml', "json");
+   var fox = yql('http://feeds.foxnews.com/foxnews/world?format=xml', 'xml', "json");
+   var ajn = yql('http://www.aljazeera.com/xml/rss/all.xml', 'xml', "json");
+   var nyt = yql('http://rss.nytimes.com/services/xml/rss/nyt/World.xml', 'xml', "json");
 
    // create inital channel cards
    loadChannel(bbc, "bbc");
