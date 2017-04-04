@@ -1,9 +1,13 @@
 
+// !!!!!!   SEE BOTTOM OF CODE FOR PROGRAM RUNTIME EVERYTHING ABOVE IS HELPER FUNCTIONS
+// foundation and checking if the dom is ready
 $(document).foundation();
 $(document).ready(function(){
+
+  // !!! HELPER FUNCTIONS !!!
   // create urls for rss feed
 
-
+  // creates a url string that pulls rss feeds via http://query.yahooapis.com in the form of xml
   var yql=function(a,b){
     return 'http://query.yahooapis.com/v1/public/yql?q='+encodeURIComponent('select * from '+b+' where url=\"'+a+'\"')+'&format=json';
   };
@@ -14,13 +18,7 @@ $(document).ready(function(){
    tmp.innerHTML = html;
    return tmp.textContent || tmp.innerText || "";
 }
-  //  url for rss feeds
-  var sky = yql('http://feeds.skynews.com/feeds/rss/world.xml', 'xml');
-  var bbc = yql('http://feeds.bbci.co.uk/news/rss.xml','xml');
-  var gar = yql('https://www.theguardian.com/world/rss', 'xml');
-  var fox = yql('http://feeds.foxnews.com/foxnews/world?format=xml', 'xml');
-  var ajn = yql('http://www.aljazeera.com/xml/rss/all.xml', 'xml');
-  var nyt = yql('http://rss.nytimes.com/services/xml/rss/nyt/World.xml', 'xml');
+
 
 // load data from rss and display on dom, this creates the inital channel cards
   function loadChannel(outlet, outletTitle){
@@ -66,7 +64,7 @@ $(document).ready(function(){
      }, "jsonp");
   }
 
-  // create dom elements, the channel init function
+  // create dom elements channel cards, the channel init function
   // will only be used once per news outlet
   function createChannel(outlet, outletTitle){
 
@@ -148,7 +146,7 @@ $(document).ready(function(){
        displayStoryModel($(this), "#sideNewsPanel");
      });
    }
-   // only updates the content of story and last updated value
+   // updates the content of story and last updated value
    function updateStorys(channel, outletTitle){
      display = "";
      date = "";
@@ -210,15 +208,39 @@ $(document).ready(function(){
 
    }
 
-
-
    // website scraper
-   function scraper(url, contentTag, imageTag){
+   function newsSiteScraper(url){
+
+   }
+
+   // !!! EVENTS !!!
+
+   var count = 0;
+
+   // read story button event
+   // opens model and displays outlet content
+   // listeners are created in the createChannel and updateStorys functions these functions call this
+   function displayStoryModel(btnElement, modelId){
+
+     // work around for button firing multible times
+     if($(modelId).attr("aria-hidden") == "true"){
+       count++;
+       $(modelId).foundation('open');
+     }
+     console.log(count);
 
    }
 
 
-   // runtime
+   // !!! RUNTIME !!!
+
+   //  url for rss feeds
+   var sky = yql('http://feeds.skynews.com/feeds/rss/world.xml', 'xml');
+   var bbc = yql('http://feeds.bbci.co.uk/news/rss.xml','xml');
+   var gar = yql('https://www.theguardian.com/world/rss', 'xml');
+   var fox = yql('http://feeds.foxnews.com/foxnews/world?format=xml', 'xml');
+   var ajn = yql('http://www.aljazeera.com/xml/rss/all.xml', 'xml');
+   var nyt = yql('http://rss.nytimes.com/services/xml/rss/nyt/World.xml', 'xml');
 
    // create inital channel cards
    loadChannel(bbc, "bbc");
@@ -239,27 +261,6 @@ $(document).ready(function(){
      updateChannel(nyt, "nyt", false);
     console.log("update");
   }, 10000);
-
-
-  // buttons
-
-  //
-  var count = 0;
-
-  function displayStoryModel(btnElement, modelId){
-
-    // work around for button firing multible times
-    if($(modelId).attr("aria-hidden") == "true"){
-      count++;
-      $(modelId).foundation('open');
-    }
-    console.log(count);
-
-  }
-
-
-
-
 
 
 });
