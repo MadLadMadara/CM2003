@@ -1,3 +1,4 @@
+/* basic page style*/
 html,body{ margin:0; padding:0; height:100%; width:100%; }
 .fullWidth {
    width: 100%;
@@ -6,17 +7,14 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
    max-width: initial;
 
 }
+
+/*main container elements */
 .main{
   margin-top: 30px;
 }
 
-.newschannel{
 
-
-
-}
-
-
+/* news channel rss feeds*/
 .distributorimg{
   height:50px;
   width: 70%;
@@ -28,7 +26,6 @@ margin-top: 30px;
   overflow-y: scroll;
   overflow-x: hidden;
   height: 600px;
-
 
 }
 
@@ -45,19 +42,14 @@ div.storys::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
-.story{
 
-
-}
 .headline{
   font-size: 100px;
 }
 .description{
   font-size: 50px;
 }
-.gotooutlet{
 
-}
 .readstory{
 
 }
@@ -65,7 +57,7 @@ div.storys::-webkit-scrollbar-thumb {
   box-shadow: none;
 }
 
-
+/* fonts and text*/
 h4{
   font-size: 21px;
   font-family: 'Raleway', sans-serif;
@@ -77,15 +69,12 @@ p{
   font-family: 'PT Serif', serif;
 }
 
-
+/* logo */
 #side_news_logo{
   height:50px;
   display: block;
   margin: auto;
-
-
 }
-
 @media screen and (min-width: 1026px) {
   #side_news_logo{
     height:50px;
@@ -93,58 +82,42 @@ p{
     float: left;
   }
 }
-
-
-
+/*nav bar*/
 .row{
   margin: auto;
 
 }
-
 .fi-list{
   position: absolute;
   left: 5%;
   top: 0px;
   font-size: 12px;
   font-size: 7vw;
-
-
 }
-
 .fi-magnifying-glass{
   position: absolute;
   top: 0px;
   right: 5%;
   font-size: 12px;
   font-size: 7vw;
-
-
 }
-
 .top-bar{
   height: 80px;
   background-color: #BB3B3B;
 }
-
 .top-bar ul{
   background-color: #BB3B3B;
   padding-top: 10px;
 }
-
 .top-bar a{
   color: black;
 }
-
 .top-bar ul > li.has-dropdown a:after {
   border-color: #FF0000 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 }
-
 .menu-icon{
-
   margin-left: 5%;
-  /*top: -40px;*/
 }
-
 #category_container{
   /*width: 100%;*/
   height: 50px;
@@ -153,20 +126,25 @@ p{
   margin-left: 5%;
 
 }
-
 .fi-magnifying-glass{
   font-size: 2.5em;
-
 }
-
 .top-bar-right{
   position: absolute;
   top: 20px;
   left: 70%;
 }
-
 #menu_bar{
   height: 10px;
   width: 100%;
 
+}
+/* sideNewsPanel */
+#sideNewsPanel{
+  background-color: green;
+  height: 100%;
+  border-width: 0px;
+}
+.reveal-overlay{
+  background-color: rgba(10, 10, 10, 0);
 }

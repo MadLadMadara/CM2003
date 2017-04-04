@@ -1,5 +1,5 @@
-$(document).foundation(); // init zurb foundation
 
+$(document).foundation();
 $(document).ready(function(){
   // create urls for rss feed
 
@@ -71,7 +71,7 @@ $(document).ready(function(){
   function createChannel(outlet, outletTitle){
 
       var channel = outlet.query.results.rss.channel;
-     display = '<div class="small-6 medium-4 large-2 float-left columns newschannel" id="'+outletTitle+'">';
+     display = '<div class="small-12 medium-4 large-2 float-left columns newschannel" id="'+outletTitle+'">';
 
      if(outletTitle == "ajn" || outletTitle == "fox"){
 
@@ -233,6 +233,10 @@ $(document).ready(function(){
 
 
   // buttons
+  $(".readstory" ).click(function() {
+    console.log("ddd");
+    $('#sideNewsPanel').foundation('open');
+  });
 
 
 
