@@ -236,6 +236,8 @@ $(document).ready(function(){
    }
 
    // website scraper
+   // this fiunction also displays the content of the arical to
+   // the side panel
    function newsSiteContentScraper(url, outletTitle, modelId){
 
 
@@ -262,7 +264,7 @@ $(document).ready(function(){
    var count = 0;
 
    // read story button event
-   // opens model and displays outlet content
+   // this method prevents double button presses and ajax request overlaps
    // listeners are created in the createChannel and updateStorys functions these functions call this
    var safeClick = true; // to stop double clicks when ajax request are being preformed
    function displayStoryModel(btnElement, modelId){
