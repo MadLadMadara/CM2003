@@ -239,9 +239,11 @@ $(document).ready(function(){
    // this fiunction also displays the content of the arical to
    // the side panel
    function newsSiteContentScraper(url, outletTitle, modelId){
+     var outPut = [];
+     outPut["headline"] = "";
+     outPut["content"] = [];
 
-
-     console.log(url);
+      console.log(url);
        $.ajax({
          url: yql(url, 'html', "html"),
          dataType: 'html',
@@ -255,8 +257,30 @@ $(document).ready(function(){
               // .media-landscape images
               // h2 are sub headers
               // p are main content
-             console.log(res);
-             $(modelId).html(res); // getting an error with bbc cookies
+              var elements = $("<div>").html(res).find('#page').find('.container').find('.story-body');
+              outPut["headline"] = elements.find(".story-body__h1").html();
+              elements.find(".story-body__inner").children().each(function() {
+                  if($(this).is('h2')){
+                    // artical subseading
+                    outPut["content"].push(["subheading", $(this).html()]);
+                  }else if ($(this).is('p') ) {
+                    // artical content
+                    outPut["content"].push(["maincontent", $(this).html()]);
+                  }else if($(this).is('figure') && $(this).hasClass('media-landscape')){
+                      // images
+                      var img = $(this).find('.js-delayed-image-load');
+                      var imageData = [];
+                      imageData["src"] = img.data('src');
+                      imageData["height"] = img.data('height');
+                      imageData["width"] = img.data('width');
+                      imageData["alt"] = img.data('alt');
+                      outPut["content"].push(["img", imageData]);
+                  }
+                  // need to work with array here 
+              });
+
+            //  console.log(res);
+             //$(modelId).html(res); // getting an error with bbc cookies
 
            }else if (outletTitle == "gar") {
 
@@ -273,6 +297,10 @@ $(document).ready(function(){
          }
        });
 
+
+
+      //  console.log(outPut);
+       // create html for side panel
    }
 
    // !!! EVENTS !!!
