@@ -239,14 +239,24 @@ $(document).ready(function(){
    // this fiunction also displays the content of the arical to
    // the side panel
    function newsSiteContentScraper(url, outletTitle, modelId){
-      console.log(yql(url, 'html', "html"));// forTesting
 
+
+     console.log(url);
        $.ajax({
          url: yql(url, 'html', "html"),
          dataType: 'html',
          success: function(res) {
+           // use 2D array list to orginize content order eg img, h2, p
+           // create helper function to build to screen
            if(outletTitle == "bbc"){
-             $(modelId).html(res);
+             // .story-body main div for bbc artical
+              // .story-body__h1 headlinr
+              // .byline who created the artical
+              // .media-landscape images
+              // h2 are sub headers
+              // p are main content
+             console.log(res);
+             $(modelId).html(res); // getting an error with bbc cookies
 
            }else if (outletTitle == "gar") {
 
@@ -273,8 +283,12 @@ $(document).ready(function(){
    // this method prevents double button presses and ajax request overlaps
    // listeners are created in the createChannel and updateStorys functions these functions call this
    var safeClick = true; // to stop double clicks when ajax request are being preformed
+   var checkbounce = 0;// forTesting
    function displayStoryModel(btnElement, modelId){
      // work around for button firing multible times
+     checkbounce++;
+    //  console.log("button bounce check :"+checkbounce); forTesting
+     console.log(btnElement);
      if($(modelId).attr("aria-hidden") == "true" && safeClick){
        safeClick = false;
        count++; // forTesting
@@ -284,6 +298,7 @@ $(document).ready(function(){
        $(modelId).foundation('open'); // needs to be moved to newsSiteContentScraper function
        safeClick = true;
      }
+     console.log(checkbounce);// forTesting
      console.log(count);// forTesting
 
    }
