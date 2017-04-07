@@ -29,37 +29,41 @@
     </div>
       -->
 
-    <div class="top-bar">
-      <img id="side_news_logo" src="res/SideNewsLogo.png" alt="SideNews Logo">
-        <div class="top-bar-title">
-          <div id="category_container">
-            <span data-responsive-toggle="menu_bar" data-hide-for="large">
-              <button class="menu-icon dark" type="button" data-toggle="menu_bar"></button>
-            </span>
-          </div>
-          <div id="search_container">
-            <span data-responsive-toggle="search_bar" data-hide-for="large">
-            <a data-toggle="search_bar"><i class="fi-magnifying-glass"></i></a>
-          </span>
-          </div>
-        </div>
 
-      <div>
-        <div id="menu_bar">
-          <ul class="menu" data-dropdown-menu>
-            <li><a href="#">Top Stories</a></li>
-            <li><a href="#">Latest Stories</a></li>
-            <li><a href="#">Local News</a></li>
-          </ul>
-        </div>
-        <div class="top-bar-right" id="search_bar">
-          <ul class="menu">
-            <li><input type="search" placeholder="Search"></li>
-            <li><button type="button" class="button">Search</button></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <!-- Navigation bar -->
+    <nav class="top-bar">
+      <img id="side_news_logo" src="res/SideNewsLogo.png" alt="SideNews Logo">
+      <!-- container that holds the category icon -->
+      <nav id="category_container">
+        <span data-responsive-toggle="menu_bar" data-hide-for="large">
+          <button class="menu-icon dark" type="button" data-toggle="menu_bar"></button>
+        </span>
+      </nav>
+
+      <!-- container that holds the search icon -->
+      <nav id="search_container">
+        <span data-responsive-toggle="search_bar" data-hide-for="large">
+          <a data-toggle="search_bar"><i class="fi-magnifying-glass"></i></a>
+        </span>
+      </nav>
+
+      <!-- main tabs -->
+      <nav id="menu_bar">
+        <ul class="vertical large-horizontal menu" data-dropdown-menu>
+          <li><a href="#">Top Stories</a></li>
+          <li><a href="#">Latest Stories</a></li>
+          <li><a href="#">Local News</a></li>
+        </ul>
+      </nav>
+
+      <!-- search bar -->
+      <nav class="top-bar-right" id="search_bar">
+        <ul class="menu">
+          <li><input type="search" placeholder="Search"></li>
+          <li><button type="button" class="button">Search</button></li>
+        </ul>
+      </nav>
+    </nav>
 
 
 
