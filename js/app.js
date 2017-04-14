@@ -268,11 +268,11 @@ $(document).ready(function(){
        console.log(url);
       //  newsSiteContentScraper(url, outletTitle, modelId);
       // testing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error, dom) {
+       Tautologistics.NodeHtmlParser.DefaultHandler(function (error, dom) {
         if (error){
 
         }else{
-          
+
         }
 
       });
