@@ -234,73 +234,16 @@ $(document).ready(function(){
      });
 
    }
-
+  //  !!!!!!!!!!!!!!! this needs work !!!!!!!!!!!!!!!!!!!!!
    // website scraper
    // this fiunction also displays the content of the arical to
    // the side panel
    function newsSiteContentScraper(url, outletTitle, modelId){
-     var outPut = [];
-     outPut["headline"] = "";
-     outPut["content"] = [];
-
-      console.log(url);
-       $.ajax({
-         url: yql(url, 'html', "html"),
-         dataType: 'html',
-         success: function(res) {
-           // use 2D array list to orginize content order eg img, h2, p
-           // create helper function to build to screen
-           if(outletTitle == "bbc"){
-             // .story-body main div for bbc artical
-              // .story-body__h1 headlinr
-              // .byline who created the artical
-              // .media-landscape images
-              // h2 are sub headers
-              // p are main content
-              var elements = $("<div>").html(res).find('#page').find('.container').find('.story-body');
-              outPut["headline"] = elements.find(".story-body__h1").html();
-              elements.find(".story-body__inner").children().each(function() {
-                  if($(this).is('h2')){
-                    // artical subseading
-                    outPut["content"].push(["subheading", $(this).html()]);
-                  }else if ($(this).is('p') ) {
-                    // artical content
-                    outPut["content"].push(["maincontent", $(this).html()]);
-                  }else if($(this).is('figure') && $(this).hasClass('media-landscape')){
-                      // images
-                      var img = $(this).find('.js-delayed-image-load');
-                      var imageData = [];
-                      imageData["src"] = img.data('src');
-                      imageData["height"] = img.data('height');
-                      imageData["width"] = img.data('width');
-                      imageData["alt"] = img.data('alt');
-                      outPut["content"].push(["img", imageData]);
-                  }
-                  // need to work with array here 
-              });
-
-            //  console.log(res);
-             //$(modelId).html(res); // getting an error with bbc cookies
-
-           }else if (outletTitle == "gar") {
-
-           }else if (outletTitle == "ajn") {
-
-           }else if (outletTitle == "nyt") {
-
-           }else if (outletTitle == "fox") {
-
-           }else if (outletTitle == "gar") {
-
-           }
-
-         }
-       });
+     // should use api
 
 
 
-      //  console.log(outPut);
-       // create html for side panel
+
    }
 
    // !!! EVENTS !!!
@@ -322,7 +265,8 @@ $(document).ready(function(){
        count++; // forTesting
        var url = btnElement.parent().find('.linkToArtical').val();
        var outletTitle = btnElement.parent().parent().parent().attr('id');
-       newsSiteContentScraper(url, outletTitle, modelId);
+       console.log(url);
+      //  newsSiteContentScraper(url, outletTitle, modelId);
        $(modelId).foundation('open'); // needs to be moved to newsSiteContentScraper function
        safeClick = true;
      }
