@@ -267,6 +267,19 @@ $(document).ready(function(){
        var outletTitle = btnElement.parent().parent().parent().attr('id');
        console.log(url);
       //  newsSiteContentScraper(url, outletTitle, modelId);
+      // testing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error, dom) {
+        if (error){
+
+        }else{
+          
+        }
+
+      });
+      var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
+      parser.parseComplete(document.body.innerHTML);
+      alert(JSON.stringify(handler.dom, null, 2));
+      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
        $(modelId).foundation('open'); // needs to be moved to newsSiteContentScraper function
        safeClick = true;
      }
