@@ -34,35 +34,16 @@
 
     <!-- Navigation bar -->
     <nav class="top-bar">
-      <img id="side_news_logo" src="res/SideNewsLogo.png" alt="SideNews Logo">
-      <!-- container that holds the category icon -->
-      <nav id="category_container">
-        <span data-responsive-toggle="menu_bar" data-hide-for="large">
+      <nav class="top-bar-title">
+        <span data-responsive-toggle="responsive-menu" data-hide-for="large">
           <button class="menu-icon dark" type="button" data-toggle="menu_bar"></button>
         </span>
+        <img id="side_news_logo" src="res/SideNewsLogo.png" alt="SideNews Logo">
       </nav>
 
-      <!-- container that holds the search icon -->
-      <nav id="search_container">
-        <span data-responsive-toggle="search_bar" data-hide-for="large">
-          <a data-toggle="search_bar"><i class="fi-magnifying-glass"></i></a>
-        </span>
-      </nav>
-
-      <!-- main tabs -->
-      <nav id="menu_bar">
+      <nav id="responsive-menu">
         <ul class="vertical large-horizontal menu" data-dropdown-menu>
-          <li><a href="#">Top Stories</a></li>
-          <li><a href="#">Latest Stories</a></li>
-          <li><a href="#">Local News</a></li>
-        </ul>
-      </nav>
-
-      <!-- search bar -->
-      <nav class="top-bar-right" id="search_bar">
-        <ul class="menu">
-          <li><input type="search" placeholder="Search"></li>
-          <li><button type="button" class="button">Search</button></li>
+          <li><a href="#"><img id="local_news_image" src="res/LocalNews.png" alt="Local News"></a></li>
         </ul>
       </nav>
     </nav>
@@ -79,17 +60,15 @@
         <button class="close-button" data-close aria-label="Close reveal" type="button">
           <span aria-hidden="true">&times;</span>
         </button>
-
       </div>
-
-
-
-
     </div>
-    <div id="footer" class="row">
 
-
-
+    <div id="footer">
+      <div class ="centre_container" id="footer_images">
+        <img id="TwitterLogo" src="res/TwitterLogo.png" alt="Twitter Logo" width="70px">
+        <img id="FacebookLogo" src="res/FacebookLogo.png" alt="Facebook Logo" width="70px">
+        <img id="GitHubLogo" src="res/GitHubLogo.png" alt="GitHub Logo" width="70px">
+      </div>
     </div>
 
     <script src="js/app.js"></script>
