@@ -18,18 +18,19 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 
 /* news channel rss feeds*/
 .distributorimg{
-  height:50px;
+  height:30px;
   width: 70%;
 }
 .distributor{
 margin-top: 30px;
 }
 .storys{
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   height: 600px;
 
 }
+
 
 div.storys::-webkit-scrollbar {
     width: 12px;
@@ -82,7 +83,7 @@ p{
 }
 
 #local_news_image{
-  width: 30%;
+  width: 25%;
 }
 
 .top-bar{
@@ -90,8 +91,6 @@ p{
   width: 100%;
   background-color: #BB3B3B;
   z-index: 999;
-  border-style: solid;
-  border-width: 1px;
   position: fixed!important;
   padding: 0;
 }
@@ -103,19 +102,16 @@ p{
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
-  /*border-style: solid;*/
-  /*border-width: 1px;*/
 
 }
 
-#local_news_image{
-  vertical-align: middle;
-}
 
 #responsive-menu{
+  position: relative;
+  height: 70px;
   width: 30%;
-  border-style: solid;
-  border-width: 1px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 
@@ -124,8 +120,8 @@ p{
   height: 70px;
   width: 100%;
   bottom : 0px;
-  /*position: fixed;*/
   margin-top: 50px;
+
 }
 
 #footer_images{
@@ -177,6 +173,7 @@ p{
   #responsive-menu{
     width: 100%;
   }
+
 }
 /*nav bar*/
 .row{
@@ -202,14 +199,16 @@ p{
   border-color: #FF0000 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 }
 .menu-icon{
+  position: relative;
   margin-left: 5%;
+  top: 12px;
 }
+
 #category_container{
   height: 50px;
   position: absolute;
   top: 25px;
   margin-left: 5%;
-
 }
 
 

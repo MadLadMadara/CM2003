@@ -319,5 +319,47 @@ $(document).ready(function(){
     console.log("update");// forTesting
   }, 10000);
 
+  // display local news
+  var localButton = document.getElementById("local_news_image");
+
+  localButton.onclick = function(){
+    // variables to store articles
+    var fox = document.getElementById("fox");
+    var nyt = document.getElementById("nyt");
+    var ajn = document.getElementById("ajn");
+    var bbc = document.getElementById("bbc");
+    var sky = document.getElementById("sky");
+    var gar = document.getElementById("gar");
+
+    //variables to store all article content
+    var content = document.getElementsByClassName("content");
+
+    //if button is already selected, shows the hidden articles and resets there width
+    if(content.className == "open"){
+      content.className = "";
+
+      bbc.className = "small-12 medium-4 large-2 float-left columns newschannel";
+      sky.className = "small-12 medium-4 large-2 float-left columns newschannel";
+      gar.className = "small-12 medium-4 large-2 float-left columns newschannel";
+
+      fox.style.display = 'block';
+      nyt.style.display = 'block';
+      ajn.style.display = 'block';
+
+      //hides all non uk articles and increses the leftover articles widths
+    }else{
+      content.className = "open";
+
+      fox.style.display = 'none';
+      nyt.style.display = 'none';
+      ajn.style.display = 'none';
+
+      bbc.className = "small-12 medium-4 large-4 float-left columns newschannel";
+      sky.className = "small-12 medium-4 large-4 float-left columns newschannel";
+      gar.className = "small-12 medium-4 large-4 float-left columns newschannel";
+
+    }
+  }
+
 
 });
