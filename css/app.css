@@ -19,11 +19,13 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 /* news channel rss feeds*/
 .distributorimg{
   height:30px;
-  width: 70%;
+  width: 150px;
 }
+
 .distributor{
 margin-top: 30px;
 }
+
 .storys{
   overflow-y: auto;
   overflow-x: hidden;
@@ -83,19 +85,17 @@ p{
 }
 
 #local_news_image{
-  width: 25%;
+  /*position: relative;*/
+  /*width: 30%;*/
 }
 
+
 .top-bar{
-  height: 70px;
+  height: 90px;
   width: 100%;
   background-color: #BB3B3B;
   z-index: 999;
-<<<<<<< HEAD
-=======
-  /*border-style: solid;*/
-  /*border-width: 1px;*/
->>>>>>> origin/master
+
   position: fixed!important;
   padding: 0;
 }
@@ -113,15 +113,31 @@ p{
 
 #responsive-menu{
   position: relative;
-  height: 70px;
+  height: 30px;
   width: 30%;
-<<<<<<< HEAD
-  top: 50%;
-  transform: translateY(-50%);
-=======
   /*border-style: solid;*/
   /*border-width: 1px;*/
->>>>>>> origin/master
+}
+
+#responsive-menu img{
+  height:0px;
+  display: none;
+
+}
+
+
+.article_images{
+  display: none;
+  height: 0px;
+}
+
+#alj_news_logo{
+  position: relative;
+  height: 30px!important;
+}
+
+#mobile_menu_links li{
+  padding-left: 15px;
 }
 
 
@@ -149,6 +165,11 @@ p{
   float: right;
 }
 
+#mobile_menu_links{
+  border-style: solid;
+  border-width: 1px;
+}
+
 @media screen and (min-width: 1026px) {
   #side_news_logo{
     height:50px;
@@ -159,7 +180,7 @@ p{
 
   .top-bar{
     position: static!important;
-    height: 100px;
+    height: 110px;
     padding: 10px;
 
   }
@@ -181,8 +202,36 @@ p{
   }
 
   #responsive-menu{
+    position: relative;
     width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: auto;
   }
+
+
+  #responsive-menu img{
+    position: relative;
+    height: 40px;
+    display: block;
+  }
+
+  #alj_news_logo{
+    height: 50px!important;
+  }
+
+  #sky_news_logo{
+    height: 20px!important;
+  }
+
+  #bbc_news_logo{
+    height: 25px!important;
+  }
+
+  #mobile_menu_links{
+    display: none;
+  }
+
 
 }
 /*nav bar*/
