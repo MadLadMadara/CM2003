@@ -19,34 +19,42 @@
     <script src="lib/foundation-6.3.0/js/vendor/what-input.js"></script>
     <script src="lib/foundation-6.3.0/js/vendor/foundation.js"></script>
     <script src="lib/foundation-6.3.0/js/vendor/foundation.min.js"></script>
-
-
   </head>
-  <!--
+
   <body>
-    <div id="banner" class="row">
-      <i class=fi-list></i>
-      <img id = "side_news_logo" src="res/SideNewsLogo.png" alt="SideNews Logo">
-      <i class=fi-magnifying-glass></i>
-    </div>
-      -->
+
+
 
 
     <!-- Navigation bar -->
-    <nav class="top-bar">
-      <nav class="top-bar-title">
-        <span data-responsive-toggle="responsive-menu" data-hide-for="large">
-          <button class="menu-icon dark" type="button" data-toggle="menu_bar"></button>
-        </span>
-        <img id="side_news_logo" src="res/SideNewsLogo.png" alt="SideNews Logo">
-      </nav>
+    <nav data-sticky-container>
+      <nav class="top-bar fixed" data-options="marginTop:0;" data-sticky>
 
-      <nav id="responsive-menu">
-        <ul class="vertical large-horizontal menu" data-dropdown-menu>
-          <li><a href="#"><img id="local_news_image" src="res/LocalNews.png" alt="Local News"></a></li>
-        </ul>
+        <nav class="top-bar-title">
+          <span data-responsive-toggle="responsive-menu" data-hide-for="large">
+            <button class="menu-icon dark" type="button" data-toggle="responsive-menu"></button>
+          </span>
+          <img id="side_news_logo" src="res/SideNewsLogo.png" alt="SideNews Logo">
+        </nav>
+
+        <nav id="responsive-menu">
+          <ul class="large-horizontal menu" data-dropdown-menu>
+            <li><a href="#"><img id="local_news_image" src="res/LocalNews.png" alt="Local News"></a></li>
+          </ul>
+        </nav>
       </nav>
     </nav>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

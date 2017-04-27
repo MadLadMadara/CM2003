@@ -10,6 +10,8 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 
 /*main container elements */
 .main{
+  position: relative;
+  top: 50px;
   margin-top: 30px;
 }
 
@@ -88,7 +90,10 @@ p{
   width: 100%;
   background-color: #BB3B3B;
   z-index: 999;
-  position: fixed;
+  border-style: solid;
+  border-width: 1px;
+  position: fixed!important;
+  padding: 0;
 }
 
 .top-bar-title{
@@ -98,6 +103,9 @@ p{
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
+  /*border-style: solid;*/
+  /*border-width: 1px;*/
+
 }
 
 #local_news_image{
@@ -105,9 +113,9 @@ p{
 }
 
 #responsive-menu{
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 30%;
+  border-style: solid;
+  border-width: 1px;
 }
 
 
@@ -116,7 +124,8 @@ p{
   height: 70px;
   width: 100%;
   bottom : 0px;
-  position: fixed;
+  /*position: fixed;*/
+  margin-top: 50px;
 }
 
 #footer_images{
@@ -143,8 +152,10 @@ p{
   }
 
   .top-bar{
-    position: fixed;
+    position: static!important;
     height: 100px;
+    padding: 10px;
+
   }
 
   .top-bar-title{
@@ -161,6 +172,10 @@ p{
 
   #footer_images img{
     width: 70px;
+  }
+
+  #responsive-menu{
+    width: 100%;
   }
 }
 /*nav bar*/
@@ -203,6 +218,7 @@ p{
   background-color: green;
   height: 100%;
   border-width: 0px;
+
 }
 .reveal-overlay{
   background-color: rgba(10, 10, 10, 0);
