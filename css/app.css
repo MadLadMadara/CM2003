@@ -90,8 +90,8 @@ p{
   width: 100%;
   background-color: #BB3B3B;
   z-index: 999;
-  border-style: solid;
-  border-width: 1px;
+  /*border-style: solid;*/
+  /*border-width: 1px;*/
   position: fixed!important;
   padding: 0;
 }
@@ -114,8 +114,8 @@ p{
 
 #responsive-menu{
   width: 30%;
-  border-style: solid;
-  border-width: 1px;
+  /*border-style: solid;*/
+  /*border-width: 1px;*/
 }
 
 
