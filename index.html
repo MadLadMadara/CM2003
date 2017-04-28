@@ -42,13 +42,14 @@
 
 
             <nav id="mobile_menu_links">
-              <li><a>Local News</a></li>
-              <li><a>The Guardian News</a></li>
-              <li><a>The New York Times</a></li>
-              <li><a>Aljazeera News</a></li>
-              <li><a>Sky News</a></li>
-              <li><a>BBC News</a></li>
-              <li><a>Local News</a></li>
+              <li id="localNewsMenue"><a>Local News</a></li>
+              <li id="garMenu"><a>The Guardian News</a></li>
+              <li id="nytMenu"><a>The New York Times</a></li>
+              <li id="ajnMenu"><a>Aljazeera News</a></li>
+              <li id="foxMenu"><a>FOX News</a></li>
+              <li id="skyMenu"><a>Sky News</a></li>
+              <li id="bbcMenu"><a>BBC News</a></li>
+
             </nav>
 
               <li class="article_images"><a><img id="local_news_image" src="res/LocalNews.png" alt="Local News"></a></li>
@@ -69,8 +70,7 @@
     <div id="main" class="row fullWidth">
       <!-- side news window  -->
       <div class="reveal float-right" id="sideNewsPanel" data-reveal data-close-on-click="true" data-animation-in="slide-in-right" data-animation-out="slide-out-right">
-        <h1>Whoa, I'm dizzy!</h1>
-        <p class='lead'>There are many options for animating modals, check out the Motion UI library to see them all</p>
+        <iframe src="" id="websiteViewer"></iframe>
         <button class="close-button" data-close aria-label="Close reveal" type="button">
           <span aria-hidden="true">&times;</span>
         </button>

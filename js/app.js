@@ -266,19 +266,12 @@ $(document).ready(function(){
        var url = btnElement.parent().find('.linkToArtical').val();
        var outletTitle = btnElement.parent().parent().parent().attr('id');
        console.log(url);
-      //  newsSiteContentScraper(url, outletTitle, modelId);
+
       // testing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-       Tautologistics.NodeHtmlParser.DefaultHandler(function (error, dom) {
-        if (error){
 
-        }else{
 
-        }
 
-      });
-      var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
-      parser.parseComplete(document.body.innerHTML);
-      alert(JSON.stringify(handler.dom, null, 2));
+      $("#websiteViewer").attr("src", url);
       // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
        $(modelId).foundation('open'); // needs to be moved to newsSiteContentScraper function
        safeClick = true;
@@ -321,7 +314,7 @@ $(document).ready(function(){
   // display local news
   var localButton = document.getElementById("local_news_image");
 
-  localButton.onclick = function(){
+  localButton.onclick = function (){
     // variables to store articles
     var fox = document.getElementById("fox");
     var nyt = document.getElementById("nyt");
@@ -337,9 +330,9 @@ $(document).ready(function(){
     if(content.className == "open"){
       content.className = "";
 
-      bbc.className = "small-12 medium-4 large-2 float-left columns newschannel";
-      sky.className = "small-12 medium-4 large-2 float-left columns newschannel";
-      gar.className = "small-12 medium-4 large-2 float-left columns newschannel";
+      // bbc.className = "small-12 medium-4 large-2 float-left columns newschannel";
+      // sky.className = "small-12 medium-4 large-2 float-left columns newschannel";
+      // gar.className = "small-12 medium-4 large-2 float-left columns newschannel";
 
       fox.style.display = 'block';
       nyt.style.display = 'block';
@@ -353,14 +346,51 @@ $(document).ready(function(){
       nyt.style.display = 'none';
       ajn.style.display = 'none';
 
-      bbc.className = "small-12 medium-4 large-4 float-left columns newschannel";
-      sky.className = "small-12 medium-4 large-4 float-left columns newschannel";
-      gar.className = "small-12 medium-4 large-4 float-left columns newschannel";
+      // bbc.className = "small-12 medium-4 large-4 float-left columns newschannel";
+      // sky.className = "small-12 medium-4 large-4 float-left columns newschannel";
+      // gar.className = "small-12 medium-4 large-4 float-left columns newschannel";
 
     }
   }
 
 
+  localNewsMenue
+  garMenu
+  nytMenu
+  ajnMenu
+  skyMenu
+  bbcMenu
+
+  // toggle display for news channels
+
+  $("#guardian_news_logo").click(function(){
+
+    toggelChannel("gar");
+  });
+  $("#nyt_news_logo").click(function(){
+    toggelChannel("nyt");
+  });
+  $("#alj_news_logo").click(function(){
+    toggelChannel("ajn");
+  });
+  $("#fox_news_logo").click(function(){
+    toggelChannel("fox");
+  });
+  $("#sky_news_logo").click(function(){
+    toggelChannel("sky");
+  });
+  $("#bbc_news_logo").click(function(){
+    toggelChannel("bbc");
+  });
+
+function toggelChannel(target){
+  var t = $("#"+target);
+  console.log(t);
+  if(t.css("display") == 'none')
+    t.css("display", "block");
+  else
+    t.css("display", "none");
+}
 
 
 

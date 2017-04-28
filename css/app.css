@@ -24,6 +24,7 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 
 .distributor{
 margin-top: 30px;
+display: block;
 }
 
 .storys{
@@ -270,11 +271,33 @@ p{
 
 /* sideNewsPanel */
 #sideNewsPanel{
-  background-color: green;
+  background-color: white;
   height: 100%;
   border-width: 0px;
+  padding: 0px;
+  overflow: hidden;
 
 }
 .reveal-overlay{
   background-color: rgba(10, 10, 10, 0);
+}
+
+#websiteViewer{
+  height: 100%;
+  width:100%;
+  padding: 0px;
+}
+
+#websiteViewer::-webkit-scrollbar {
+    width: 12px;
+}
+
+#websiteViewer::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+#websiteViewer::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
