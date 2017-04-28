@@ -288,7 +288,6 @@ $(document).ready(function(){
 
    }
 
-
    // !!! RUNTIME !!!
 
    //  url for rss feeds
@@ -360,6 +359,5 @@ $(document).ready(function(){
 
     }
   }
-
 
 });
