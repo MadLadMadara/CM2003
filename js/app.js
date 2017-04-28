@@ -136,7 +136,7 @@ $(document).ready(function(){
 
              }else{
                  if(outletTitle == "gar" || outletTitle =="fox"){
-                   display += '<a href="'+value.link[0]+'" class="button small-12">Go To Site</a>';
+                   display += '<a href="'+value.link+'" class="button small-12">Go To Site</a>';
                  }else{
                    display +='<button type="button" class="small-12 button readstory">Read Story</button>';
                   display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link+'">';
@@ -219,7 +219,7 @@ $(document).ready(function(){
 
            }else{
                if(outletTitle == "gar" || outletTitle =="fox"){
-                 display += '<a href="'+value.link[0]+'" class="button small-12">Go To Site</a>';
+                 display += '<a href="'+value.link+'" class="button small-12">Go To Site</a>';
                }else{
                  display +='<button type="button" class="small-12 button readstory">Read Story</button>';
                 display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link+'">';
