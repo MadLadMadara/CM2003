@@ -34,6 +34,14 @@ display: block;
 
 }
 
+.button{
+  background-color: #BB3B3B;
+}
+.button:hover,
+.button:focus {
+    background-color: #000000;
+}
+
 
 div.storys::-webkit-scrollbar {
     width: 12px;

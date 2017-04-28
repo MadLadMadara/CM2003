@@ -131,12 +131,16 @@ $(document).ready(function(){
              if(outletTitle == "nyt"){
                // link is an array [0] url string [1] objecy
                // object .href is the link .rel no idea
-                 display +='<button type="button" class="small-12 button readstory">Read Story</button>';
-                 display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link[0]+'">';
+               display += '<a href="'+value.link[0]+'" class="button small-12">Go To Site</a>';
+
 
              }else{
-                 display +='<button type="button" class="small-12 button readstory">Read Story</button>';
-                 display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link+'">';
+                 if(outletTitle == "gar" || outletTitle =="fox"){
+                   display += '<a href="'+value.link[0]+'" class="button small-12">Go To Site</a>';
+                 }else{
+                   display +='<button type="button" class="small-12 button readstory">Read Story</button>';
+                  display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link+'">';
+                }
 
             }
           }
@@ -210,12 +214,16 @@ $(document).ready(function(){
            if(outletTitle == "nyt"){
              // link is an array [0] url string [1] objecy
              // object .href is the link .rel no idea
-               display +='<button type="button" class="small-12 button readstory">Read Story</button>';
-               display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link[0]+'">';
+             display += '<a href="'+value.link[0]+'" class="button">Go To Site</a>';
+
 
            }else{
-               display +='<button type="button" class="small-12 button readstory">Read Story</button>';
-               display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link+'">';
+               if(outletTitle == "gar" || outletTitle =="fox"){
+                 display += '<a href="'+value.link[0]+'" class="button small-12">Go To Site</a>';
+               }else{
+                 display +='<button type="button" class="small-12 button readstory">Read Story</button>';
+                display += '<input type="hidden" name="linkToArtical" class="linkToArtical" value="'+value.link+'">';
+              }
 
           }
         }
@@ -266,11 +274,16 @@ $(document).ready(function(){
        var url = btnElement.parent().find('.linkToArtical').val();
        var outletTitle = btnElement.parent().parent().parent().attr('id');
        console.log(url);
-
+       $("#websiteViewer").attr("src", "");
       // testing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
+      if(outletTitle == "gar" || outletTitle == "nyt" || outletTitle =="fox"){
+        $("#websiteViewer").attr("src", url);
 
+      }else{
+        $("#websiteViewer").attr("src", url);
+      }
       $("#websiteViewer").attr("src", url);
       // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
        $(modelId).foundation('open'); // needs to be moved to newsSiteContentScraper function
@@ -364,7 +377,6 @@ $(document).ready(function(){
   // toggle display for news channels
 
   $("#guardian_news_logo").click(function(){
-
     toggelChannel("gar");
   });
   $("#nyt_news_logo").click(function(){
